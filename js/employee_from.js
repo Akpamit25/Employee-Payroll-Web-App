@@ -20,13 +20,28 @@ window.addEventListener("DOMContentLoaded", (event) => {
         output.textContent = salary.value;
     });
 
+    const date = document.querySelector('#startdate');
+    const dateError = document.querySelector(".date-error");
+    date.addEventListener('input', function() {
+        const startdate = new Date(Date.parse(getInputValueById('#day') + " " + getInputValueById('#month') + " " + getInputValueById('#year')));
+        try {
+            (new EmployeePayrollData()).startDate = startdate;
+            dateError.textContent = " ";
+
+            // setTextValue('.date-error',"");
+        } catch (e) {
+            // setTextValue('.date-error', e);
+            dateError.textContent = e;
+
+        }
+    });
+
 });
 
 const save = () => {
     let employeePayrollData;
     try {
         employeePayrollData = createEmployeePayroll();
-        createAndUpdateStorage(employeePayrollData);
     } catch (e) {
         console.log(e);
         return;
