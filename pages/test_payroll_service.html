@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -42,14 +42,14 @@
     <div id="post"></div>
     <script>
         const getElement = document.querySelector('#get');
-        const getURL = "http://localhost:3004/EmployeePayrollDB/1";
+        const getURL = "";
         makeServiceCall("GET", getURL, true) // then is used for executing the promise
             .then(responseText => {
                 getElement.textContent = "Get User Data : "  +responseText;
             }).catch(error => { getElement.textContent = "Get Error Status : " + JSON.stringify(error); });
 
 
-        const deleteURL = "http://localhost:3004/EmployeePayrollDB/3";
+        const deleteURL = "";
         const deleteElement = document.querySelector('#delete');
         makeServiceCall("DELETE", deleteURL, false) // then is used for executing the promise
             .then(responseText => {
@@ -57,7 +57,7 @@
             }).catch(error => { deleteElement.textContent = "Delete Error Status : " + JSON.stringify(error); });
 
 
-        const postURL = "http://localhost:3004/EmployeePayrollDB";
+        const postURL = "";
         const empdata = {
       "_name": "Amit Kumar Prajapati",
       "_gender": "male",
@@ -78,4 +78,4 @@
     </script>
 </body>
 
-</html> -->
+</html>
