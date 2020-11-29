@@ -2,26 +2,25 @@
   "EmployeePayrollDB": [
     {
       "id": 1,
-      "_name": "Mark",
+      "_name": "Mark Zuck",
       "_gender": "male",
       "_department": [
-        "Engineering",
         "Finance"
       ],
       "_salary": "500000",
-      "_startDate": "29 Oct 2019",
+      "_startDate": "29 November 2020",
       "_note": "All In One",
-      "_profilePic": "../assets/profile-images/Ellipse -3.png"
+      "_profilePic": "../assets/profile-images/Ellipse -5.png"
     },
     {
       "id": 2,
-      "_name": "Bill Gates",
-      "_gender": "male",
+      "_name": "Rashmika",
+      "_gender": "female",
       "_department": [
         "Engineering"
       ],
       "_salary": "500000",
-      "_startDate": "29 Oct 2019",
+      "_startDate": "29 November 2020",
       "_note": "Terrific Engineer",
       "_profilePic": "../assets/profile-images/Ellipse -1.png"
     },
@@ -32,10 +31,36 @@
         "Sales"
       ],
       "_salary": "400000",
-      "_startDate": "29 Oct 2019",
+      "_startDate": "29 November 2020",
       "_note": "",
-      "_profilePic": "../assets/profile-images/Ellipse -1.png",
+      "_profilePic": "../assets/profile-images/Ellipse -5.png",
       "id": 3
+    },
+    {
+      "_name": "Abhijeet Kumar Giri",
+      "_profilePic": "../assets/profile-images/Ellipse -9.png",
+      "_gender": "male",
+      "_department": [
+        "HR",
+        "Engineer",
+        "Others"
+      ],
+      "_salary": "486600",
+      "_note": "New Joinee !!!!",
+      "_startDate": "14 Nov 2020",
+      "id": 4
+    },
+    {
+      "_name": "Abhijeet Kumar Giri",
+      "_profilePic": "../assets/profile-images/Ellipse -3.png",
+      "_gender": "male",
+      "_department": [
+        "Engineer"
+      ],
+      "_salary": "431200",
+      "_note": "Engineer ",
+      "_startDate": "14 Nov 2020",
+      "id": 5
     }
   ]
 }

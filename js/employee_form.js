@@ -5,14 +5,14 @@ window.addEventListener("DOMContentLoaded", (event) => {
     const name = document.querySelector('#name');
     name.addEventListener('input', function () {
         if (name.value.length == 0) {
-            setTextValue('.text-error',"");
+            setTextValue('.text-error', "");
             return;
         }
         try {
             checkName(name.value);
-            setTextValue('.text-error',"");
+            setTextValue('.text-error', "");
         } catch (e) {
-            setTextValue('.text-error',e);
+            setTextValue('.text-error', e);
         }
     });
     const salary = document.querySelector("#salary");
@@ -26,8 +26,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
     date.addEventListener('input', function () {
         let startdate = getInputValueById('#day') + " " + getInputValueById('#month') + " " + getInputValueById('#year');
         try {
-            checkStartDate(new Date(Date.parse(startdate))) ;
-            setTextValue('.date-error',"");
+            checkStartDate(new Date(Date.parse(startdate)));
+            setTextValue('.date-error', "");
         } catch (e) {
             setTextValue('.date-error', e);
         }
@@ -42,15 +42,37 @@ const save = (event) => {
     event.stopPropagation();
     try {
         setEmployeePayrollObject();
-        createAndUpdateStorage();
-        resetForm();
-        window.location.replace(site_properties.home_page);
+        if (site_properties.use_local_storage.match("true")) {
+            createAndUpdateStorage();
+            resetForm();
+            window.location.replace(site_properties.home_page);
+        }
+        else
+            createOrUpdateEmployeePayroll();
+
     } catch (e) {
         return;
     }
 }
+const createOrUpdateEmployeePayroll = () => {
+
+    let postURL = site_properties.server_url;
+    let methodCall = "POST";
+    if (isUpdate) {
+        methodCall = "PUT";
+        postURL = postURL + employeePayrollObj.id.toString();
+    }
+    makeServiceCall(methodCall, postURL, true, employeePayrollObj) // then is used for executing the promise
+        .then(responseText => {
+            resetForm();
+            window.location.replace(site_properties.home_page);
+        }).catch(error => {
+            throw error;
+        });
+}
+
 const setEmployeePayrollObject = () => {
-    if(!isUpdate && site_properties.use_local_storage.match("true")){
+    if (!isUpdate && site_properties.use_local_storage.match("true")) {
         employeePayrollObj.id = createNewEmployeeId();
     }
     employeePayrollObj._name = getInputValueById('#name');
@@ -65,7 +87,7 @@ const createAndUpdateStorage = () => {
     let employeePayrollList = JSON.parse(localStorage.getItem("empList"));
     if (employeePayrollList) {
         let empPayrollData = employeePayrollList.
-                              find(empData => empData.id == employeePayrollObj.id);
+            find(empData => empData.id == employeePayrollObj.id);
         if (!empPayrollData) {
             employeePayrollList.push(employeePayrollObj);
         } else {
@@ -147,7 +169,7 @@ const setForm = () => {
     setTextValue('.salary-output', employeePayrollObj._salary);
     setValue('#notes', employeePayrollObj._note);
     let date = stringifyDate(employeePayrollObj._startDate).split(" ");
-    alert(date);
+    // alert(date);
     setValue('#day', date[0]);
     setMonthValue('#month', date[1]);
     setValue('#year', date[2]);
