@@ -1,14 +1,34 @@
 let empPayrollList;
 window.addEventListener('DOMContentLoaded', (event) => {
-  empPayrollList = getEmployeePayrollDataFromStorage();
-  document.querySelector(".emp-count").textContent = empPayrollList.length;
-  createInnerHtml();
-  localStorage.removeItem('editEmp');
+  if(site_properties.use_local_storage.match("true")){
+   getEmployeePayrollDataFromStorage();
+  }
+ else getEmployeePayrollDataFromServer();
+  
 });
 
 const getEmployeePayrollDataFromStorage = () => {
-  return localStorage.getItem("empList") ?
+  empPayrollList = localStorage.getItem("empList") ?
     JSON.parse(localStorage.getItem('empList')) : [];
+    processEmployeePayrollDataResponse();
+}
+
+const processEmployeePayrollDataResponse = () => {
+  document.querySelector(".emp-count").textContent = empPayrollList.length;
+  createInnerHtml();
+  localStorage.removeItem('editEmp');
+}
+
+const getEmployeePayrollDataFromServer = () =>{
+  makeServiceCall("GET", site_properties.server_url, true) // then is used for executing the promise
+      .then(responseText => {
+        empPayrollList = JSON.parse(responseText);
+        processEmployeePayrollDataResponse();
+      })
+      .catch(error => { console.log("Get Error Status : " + JSON.stringify(error));
+      empPayrollList = [];
+      processEmployeePayrollDataResponse();
+    });
 }
 const createInnerHtml = () => {
     if (empPayrollList.length == 0) return;
