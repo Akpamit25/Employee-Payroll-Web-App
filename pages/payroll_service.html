@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX PROMISE TEST</title>
+    <style>
+        body {
+            margin: auto;
+            background-color: rgb(49, 48, 48);
+        }
+
+        div {
+            border: 4px solid white;
+            background-color: rgb(82, 120, 202);
+            padding: 50px;
+            width: 80%;
+            font-style: xx-large;
+            margin: 50px auto;
+            border-radius: 10px;
+            font-weight: bolder;
+            text-align: center;
+        }
+        h1{
+            /* border: 2px solid red; */
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 30%;
+            text-align: center;
+            margin: 10px auto;
+            color: violet;
+        }
+    </style>
+    <script src="../js/http_services.js"></script>
+</head>
+
+<body>
+    <h1>The Test Services Results</h1>
+    <div id="get"></div>
+    <div id="delete"></div>
+    <div id="post"></div>
+    <script>
+        const getElement = document.querySelector('#get');
+        const getURL = "http://localhost:3004/EmployeePayrollDB/1";
+        makeServiceCall("GET", getURL, true) // then is used for executing the promise
+            .then(responseText => {
+                getElement.textContent = "Get User Data : "  +responseText;
+            }).catch(error => { getElement.textContent = "Get Error Status : " + JSON.stringify(error); });
+
+
+        const deleteURL = "http://localhost:3004/EmployeePayrollDB/3";
+        const deleteElement = document.querySelector('#delete');
+        makeServiceCall("DELETE", deleteURL, false) // then is used for executing the promise
+            .then(responseText => {
+                deleteElement.textContent = "User Deleted at : "  + responseText;
+            }).catch(error => { deleteElement.textContent = "Delete Error Status : " + JSON.stringify(error); });
+
+
+        const postURL = "http://localhost:3004/EmployeePayrollDB";
+        const empdata = {
+      "_name": "Amit Kumar Prajapati",
+      "_gender": "male",
+      "_department": [
+        "Sales"
+      ],
+      "_salary": "400000",
+      "_startDate": "29 Oct 2019",
+      "_note": "",
+      "_profilePic": "../assets/profile-images/Ellipse -1.png",
+    };
+        const postElement = document.querySelector('#post');
+        makeServiceCall("POST", postURL, true, empdata) // then is used for executing the promise
+            .then(responseText => {
+                postElement.textContent = "User Added at : " + responseText;
+            }).catch(error => { postElement.textContent = "Post Error Status : " + JSON.stringify(error); });
+
+    </script>
+</body>
+
+</html>

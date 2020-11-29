@@ -244,5 +244,3 @@ const resetSalary = (id, value) => {
     outputSal.textContent = "50000";
 }
 
-
-
