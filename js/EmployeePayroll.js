@@ -1,12 +1,8 @@
 class EmployeePayrollData {
 
+    id;
+
     //Getters & Setters
-    get id() {
-        return this._id;
-    }
-    set id(id) {
-        this._id = id;
-    }
     get name() {
         return this._name;
     }
@@ -55,9 +51,9 @@ class EmployeePayrollData {
         let now = new Date();
         if (startDate > now)
             throw 'Date is a Future Date';
-        // var diff = Math.abs(now.getTime() - startDate.getTime());
-        // if (diff / (1000 * 60 * 60 * 24) > 30)
-        //     throw 'Start Date Is Beyond 30 Days !';
+        var diff = Math.abs(now.getTime() - startDate.getTime());
+        if (diff / (1000 * 60 * 60 * 24) > 30)
+            throw 'Start Date Is Beyond 30 Days !';
         this._startDate = startDate;
     }
 
