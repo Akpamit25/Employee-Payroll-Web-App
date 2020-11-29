@@ -13,18 +13,6 @@
       "_profilePic": "../assets/profile-images/Ellipse -5.png"
     },
     {
-      "id": 2,
-      "_name": "Rashmika",
-      "_gender": "female",
-      "_department": [
-        "Engineering"
-      ],
-      "_salary": "500000",
-      "_startDate": "29 November 2020",
-      "_note": "Terrific Engineer",
-      "_profilePic": "../assets/profile-images/Ellipse -1.png"
-    },
-    {
       "_name": "Amit Kumar Prajapati",
       "_gender": "male",
       "_department": [
@@ -51,15 +39,16 @@
       "id": 4
     },
     {
-      "_name": "Abhijeet Kumar Giri",
-      "_profilePic": "../assets/profile-images/Ellipse -3.png",
-      "_gender": "male",
+      "_name": "Rashmika Mandana",
+      "_profilePic": "../assets/profile-images/Ellipse -1.png",
+      "_gender": "female",
       "_department": [
+        "HR",
         "Engineer"
       ],
-      "_salary": "431200",
-      "_note": "Engineer ",
-      "_startDate": "14 Nov 2020",
+      "_salary": "500000",
+      "_note": "New HR ",
+      "_startDate": "20 Nov 2020",
       "id": 5
     }
   ]
